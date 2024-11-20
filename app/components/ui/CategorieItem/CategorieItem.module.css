@@ -1,0 +1,32 @@
+.itemContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-bottom: 2px solid var(--couleur-gris-smok);
+  color: var(--couleur-gris-claire);
+  padding: 10px 20px;
+  width: auto;
+  cursor: pointer;
+  transition: border-bottom 0.1s ease;
+}
+
+.itemContainer:hover {
+  color: black;
+}
+
+.isSelected {
+  border-bottom: 2px solid var(--couleur-primaire);
+}
+
+.categorieItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.boxTitle {
+  font-size: var(--font-size-heading6);
+  font-weight: var(--font-weight-semi-bold);
+}

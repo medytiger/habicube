@@ -1,0 +1,18 @@
+.itemContainer {
+  border: 2px solid var(--couleur-gris-smok);
+  border-radius: var(--button-border-radius);
+  padding: 15px 10px;
+  cursor: pointer;
+}
+
+.itemContainer:hover {
+  border: 2px solid var(--couleur-noire);
+}
+
+.isSelected {
+  border: 2px solid var(--couleur-primaire);
+}
+
+.isSelected:hover {
+  border: 2px solid var(--couleur-primaire);
+}

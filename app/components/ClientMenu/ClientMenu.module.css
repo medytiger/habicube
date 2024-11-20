@@ -1,0 +1,13 @@
+.clientMenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  padding: 5rem 0;
+}
+
+.itemContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

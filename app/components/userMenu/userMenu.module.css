@@ -1,0 +1,77 @@
+.userMenuContainer {
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.userMenu {
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--couleur-gris-smok);
+  padding: 0.2rem 0.7rem;
+  border-radius: var(--button-border-radius);
+}
+
+.userAvatar {
+  border-radius: 50%; /* Rend l'image ronde */
+  object-fit: cover; /* Ajuste l'image pour couvrir l'élément tout en conservant son ratio */
+  border: 2px solid #fff; /* Ajoute une bordure blanche autour de l'image */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Ajoute une ombre pour un effet de profondeur */
+}
+
+.userMenuLinks {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 200px;
+  border: 1px solid var(--couleur-gris-smok);
+  border-radius: var(--button-border-radius);
+  background-color: var(--couleur-blanche);
+  overflow: hidden;
+  opacity: 0; /* Commence invisible */
+  transform: translateY(10px); /* Décalage vers le bas */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transition pour l'opacité et le déplacement */
+  pointer-events: none; /* Empêche les interactions lorsque le menu est fermé */
+  display: flex; /* Gardez le menu en mode flex pour les éléments internes */
+  flex-direction: column; /* Disposez les éléments en colonne */
+}
+
+.userMenuLinks.open {
+  opacity: 1; /* Rendre visible */
+  transform: translateY(0); /* Remettre à sa position d'origine */
+  pointer-events: auto; /* Permettre les interactions lorsque le menu est ouvert */
+}
+
+.userName {
+  font-size: var(--font-size-heading6);
+  font-weight: var(--font-weight-semi-bold);
+}
+
+.userMenuLinks a {
+  text-decoration: none;
+  color: black;
+}
+
+.menuItem {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semi-bold);
+  padding: 5px 1rem;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background-color: var(--couleur-gris-smok);
+  transform: scale(1.01);
+}
+
+.deconnexion {
+  border-top: 1px solid var(--couleur-gris-smok);
+}
+
+.deconnexion:hover {
+  color: var(--couleur-primaire);
+}

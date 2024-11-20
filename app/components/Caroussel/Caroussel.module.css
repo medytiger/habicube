@@ -1,0 +1,13 @@
+.CarousselContainer {
+  height: 450px;
+  background-color: rgb(197, 197, 197);
+  width: 100vw;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-extra);
+  font-weight: var(--font-weight-black);
+  -webkit-text-stroke: 1px var(--couleur-blanche);
+  letter-spacing: -3rem;
+}

@@ -1,0 +1,49 @@
+.counterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.CounterDetail {
+  display: flex;
+  flex-direction: column;
+}
+
+.CounterSubtitle {
+  color: var(--couleur-gris-claire);
+}
+
+.CounterValue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CounterValue span {
+  height: 30px;
+  width: 30px;
+  border: 1px solid var(--couleur-gris-claire);
+  border-radius: 50%;
+  background-color: var(--couleur-gris-smok);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-user-select: none; /* Pour les navigateurs basés sur WebKit (Chrome, Safari) */
+  -moz-user-select: none; /* Pour Firefox */
+  -ms-user-select: none; /* Pour Internet Explorer/Edge */
+  user-select: none;
+}
+
+.value {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-user-select: none; /* Pour les navigateurs basés sur WebKit (Chrome, Safari) */
+  -moz-user-select: none; /* Pour Firefox */
+  -ms-user-select: none; /* Pour Internet Explorer/Edge */
+  user-select: none;
+}

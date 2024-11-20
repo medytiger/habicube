@@ -1,0 +1,90 @@
+.inputContent {
+  border: 2px solid var(--couleur-gris-claire);
+  border-radius: var(--button-border-radius);
+  transition: transform 300ms, opacity 300ms;
+  /* margin: 1.5rem 0 0.5rem 0; */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchInput {
+  margin: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--couleur-primaire);
+  width: 300px;
+}
+
+.inputContent.focus {
+  border: 2px solid var(--couleur-primaire);
+  transition: transform 300ms, opacity 300ms;
+}
+
+.inputStyle {
+  border: 2px solid var(--couleur-gris-claire);
+  border-radius: var(--button-border-radius);
+  border: none;
+  padding: 20px 5px 5px 5px;
+  width: 100%;
+  outline: none;
+  overflow: hidden;
+}
+
+.hidePadding {
+  padding: 8px;
+}
+
+.inputContent .label {
+  position: absolute;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--couleur-gris-claire);
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 300ms, opacity 300ms;
+}
+
+.inputContent .labelActive {
+  transform: translateY(-1.3rem) scale(0.8); /* Ajout du scale */
+  transition: transform 300ms, opacity 300ms;
+}
+
+.error {
+  position: absolute;
+  z-index: 99;
+  font-size: 10px;
+  font-weight: 600;
+  bottom: 0;
+  bottom: -1rem;
+  width: 100%;
+  display: flex;
+  height: 15px;
+  overflow: hidden;
+  color: red;
+}
+
+.biDollar {
+  font-weight: 700;
+  font-size: 24px;
+  position: absolute;
+  top: 5px;
+  left: 20px;
+}
+
+.inputIcon {
+  font-size: 24px;
+  background-color: var(--couleur-primaire);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--couleur-blanche);
+  border-radius: var(--button-border-radius);
+  padding: 6px;
+  position: absolute;
+  right: -2.6rem;
+  cursor: pointer;
+}

@@ -1,0 +1,61 @@
+:root {
+  --button-border-radius: 0.4rem;
+
+  /* Variables pour les titres */
+  --font-size-extra: 200px;
+  --font-size-heading1: 32px;
+  --font-size-heading2: 24px;
+  --font-size-heading3: 20px;
+  --font-size-heading4: 17px;
+  --font-size-heading5: 15px;
+  --font-size-heading6: 12px;
+
+  /* Variables pour le texte courant */
+  --font-size-small: 13px;
+  --font-size-medium: 15px;
+  --font-size-large: 18px;
+
+  /* font-weight */
+  --font-weight-thin: 100; /* Thin */
+  --font-weight-extra-light: 200; /* Extra Light */
+  --font-weight-light: 300; /* Light */
+  --font-weight-normal: 400; /* Normal */
+  --font-weight-medium: 500; /* Medium */
+  --font-weight-semi-bold: 600; /* Semi Bold */
+  --font-weight-bold: 700; /* Bold */
+  --font-weight-extra-bold: 800; /* Extra Bold */
+  --font-weight-black: 900; /* Black */
+
+  /* COULEUR */
+  --couleur-primaire: #ff004c;
+  --couleur-secondaire: #eb026f;
+  --couleur-gris: #242323;
+  --couleur-gris-claire: #6f6f6f;
+  --couleur-gris-smok: #d1d1d1;
+  --couleur-gris-blanc: #efefef;
+  --couleur-blanche: #fff;
+  --couleur-noire: #000;
+}
+
+.leaflet-bottom,
+.leaflet-control,
+.leaflet-pane,
+.leaflet-top {
+  z-index: 0 !important;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+}
+
+.container {
+  width: 1200px;
+}

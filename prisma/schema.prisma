@@ -1,0 +1,273 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?         @unique
+  emailVerified DateTime?
+  password      String?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  // Optional for WebAuthn support
+  Authenticator Authenticator[]
+  role          userRole?       @default(USER)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String   @unique
+  userId       String   @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+  credentialID         String  @id @map("_id")
+  userId               String  @db.ObjectId
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, credentialID])
+}
+
+enum userRole {
+  USER // Utilisateur standard
+  ADMIN // Administrateur
+}
+
+// model Users {
+//   id                  String                @id @default(auto()) @map("_id") @db.ObjectId // ID unique pour MongoDB
+//   email               String // Email unique de l'utilisateur
+//   family_name         String // Nom de l'utilisateur
+//   given_name          String // Prénom de l'utilisateur
+//   password            String? // Mot de passe de l'utilisateur
+//   createdAt           DateTime              @default(now()) // Date de création du compte
+//   updatedAt           DateTime              @updatedAt // Date de la dernière mise à jour du compte
+//   role                Role                  @default(USER) // Rôle de l'utilisateur, par défaut 'USER'
+//   Homes               Homes[] // Relation avec les publications de l'utilisateur
+//   cars                Cars[] // Relation avec les publications de l'utilisateur
+//   Terrain             Terrains[] // Relation avec les publications de l'utilisateur
+//   Annonces            Annonces[] // Relation avec les publications de l'utilisateur
+//   reservations        Reservations[] // Réservations faites par l'utilisateur
+//   reservationsClients ReservationsClients[] // Réservations faites par d'autres utilisateurs
+//   nomEntreprise       String? // Nom de l'entreprise, facultatif
+//   prefixe             String? // Préfixe, facultatif
+//   numero              String? // Numéro, facultatif
+//   domaineActivite     String? // Domaine d'activité, facultatif
+//   lieu                String? // Lieu, facultatif
+//   verifie             Boolean               @default(false) // Indique si l'utilisateur est vérifié
+//   picture             String? // URL de la photo, facultatif
+//   genre               String? // Genre, facultatif
+//   descriptionActivite String? // Description de l'activité, facultatif
+//   date                DateTime? // Date (utiliser DateTime au lieu de String pour les dates)
+//   facebook            String? // URL du profil Facebook, facultatif
+//   tiktok              String? // URL du profil TikTok, facultatif
+//   linkedin            String? // URL du profil LinkedIn, facultatif
+//   version             Int                   @map("__v") // Mapping to "__v" field in the database
+
+//   @@index([email]) // Index sur le champ email pour améliorer les performances des requêtes
+// }
+
+// model Homes {
+//   id             String   @id @default(auto()) @map("_id") @db.ObjectId
+//   secteur        String
+//   typePropiete   String[]
+//   typePlacement  String
+//   standing       String
+//   titre          String
+//   superficie     String
+//   description    String
+//   commodite      String[]
+//   pays           String
+//   ville          String
+//   commune        String
+//   quartier       String
+//   nomRue         String
+//   codePostal     String
+//   prix           Int
+//   duree          String
+//   condition      String
+//   permis         String
+//   problemePermis String?
+//   images         String[]
+//   video          String?
+//   homeLink       String[]
+//   favories       String[]
+//   active         Boolean  @default(true)
+//   version        Int      @map("__v")
+//   author         Users    @relation(fields: [authorId], references: [id])
+//   authorId       String   @db.ObjectId
+
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+
+//   reservations Reservations[] // Gardez cette définition pour permettre plusieurs réservations
+// }
+
+// model Cars {
+//   id           String @id @default(auto()) @map("_id") @db.ObjectId
+//   secteur      String
+//   marque       String
+//   modele       String
+//   annee        Int // Utiliser un entier pour l'année
+//   nombrePlaces Int // Utiliser un entier pour le nombre de places
+
+//   pays       String
+//   ville      String
+//   commune    String
+//   quartier   String
+//   nomRue     String?
+//   codePostal String?
+
+//   typePlacement String
+//   kilometrage   Int // Utiliser un entier pour le kilométrage
+//   carburant     String
+//   cylindree     Float // Utiliser un float pour la cylindrée
+
+//   transmission String
+//   puissance    Int // Utiliser un entier pour la puissance
+
+//   prix  Int
+//   duree Int? // Utiliser un entier pour la durée
+
+//   etat      String
+//   commodite String
+
+//   authorId String @db.ObjectId
+//   author   Users  @relation(fields: [authorId], references: [id])
+
+//   reservations Reservations[] // Gardez cette définition pour permettre plusieurs réservations
+
+//   nomReservation String?
+//   commentaires   String?
+
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
+
+// model Terrains {
+//   id            String   @id @default(auto()) @map("_id") @db.ObjectId // ID unique pour MongoDB
+//   secteur       String // Secteur de la propriété (e.g., "Immobiliers")
+//   categorie     String[] // Type de propriété (e.g., ["Appartement", "Maison"])
+//   typePlacement String // Type de placement (e.g., "En vente")
+//   titre         String // Titre de la publication (e.g., "Villa duplex de 5 pièces")
+//   superficie    String
+//   description   String // Description détaillée de la maison
+//   avantages     String[] // Commodités disponibles (e.g., ["Piscine", "Garage"])
+//   pays          String // Pays (e.g., "Côte d'Ivoire")
+//   ville         String // Ville (e.g., "Abidjan")
+//   commune       String // Commune (e.g., "Bingerville")
+//   quartier      String // Quartier (e.g., "Palais de justice")
+//   nomRue        String // Nom de la rue (facultatif)
+//   prix          Int // Prix de la maison (e.g., 75000000)
+//   duree         String // Durée (facultatif)
+//   conditions    String // Conditions pour la vente (e.g., "Il faut être sérieux et réglo")
+
+//   images   String[] // Liste des URL d'images (Array de chaînes)
+//   video    String? // URL de la vidéo (facultatif)
+//   homeLink String[] // Liens associés à la maison (facultatif)
+//   favories String[] // Favoris associés (facultatif)
+//   active   Boolean  @default(true) // Statut actif ou non de la publication
+//   version  Int      @map("__v") // Mapping to "__v" field in the database
+//   author   Users    @relation(fields: [authorId], references: [id]) // Relation avec le modèle User
+//   authorId String[] @db.ObjectId // Référence à l'auteur de la publication
+
+//   // Champs pour la réservation
+//   reservations    String[] // IDs ou informations des réservations (Array de chaînes)
+//   mesReservations String[] // Nom associé à la réservation (facultatif)
+//   commentaire     String[] // Commentaire sur la réservation (facultatif)
+
+//   createdAt DateTime @default(now()) // Date de création de la publication
+//   updatedAt DateTime @updatedAt // Date de mise à jour de la publication
+// }
+
+// model Annonces {
+//   id          String  @id @default(auto()) @map("_id") @db.ObjectId // ID unique pour MongoDB
+//   title       String // Titre de la publication
+//   nom         String
+//   type        String
+//   contact     String
+//   description String
+//   budget      String
+//   lieu        String
+//   content     String? // Contenu de la publication, facultatif
+//   published   Boolean @default(false) // Indique si la publication est publiée
+//   authorId    String  @db.ObjectId // Référence à l'auteur de la publication
+//   author      Users   @relation(fields: [authorId], references: [id]) // Relation avec le modèle User
+
+//   createdAt DateTime @default(now()) // Date de création de la publication
+// }
+
+// model Reservations {
+//   id            String   @id @default(auto()) @map("_id") @db.ObjectId
+//   bienId        String[] @db.ObjectId // Référence à l'ID du bien réservé
+//   utilisateurId String[] @db.ObjectId // Référence à l'ID de l'utilisateur qui a effectué la réservation
+//   commentaire   String? // Commentaire facultatif de l'utilisateur concernant la réservation
+//   createdAt     DateTime @default(now())
+//   updatedAt     DateTime @updatedAt
+
+//   bien        Homes   @relation(fields: [bienId], references: [id]) // Gardez cette définition
+//   utilisateur Users   @relation(fields: [utilisateurId], references: [id])
+//   Cars        Cars?   @relation(fields: [carsId], references: [id])
+//   carsId      String? @db.ObjectId
+// }
+
+// model ReservationsClients {
+//   id             String   @id @default(auto()) @map("_id") @db.ObjectId
+//   client         Users    @relation(fields: [clientId], references: [id])
+//   clientId       String[] @db.ObjectId
+//   reservationIds String[] @db.ObjectId // Références à l'ID des réservations
+//   createdAt      DateTime @default(now()) // Date de création de la réservation
+//   updatedAt      DateTime @updatedAt // Date de mise à jour de la réservation
+// }
