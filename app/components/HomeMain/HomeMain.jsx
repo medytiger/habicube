@@ -1,16 +1,18 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useGlobalContext } from '@/app/hooks/Context';
 import style from './HomeMain.module.css';
+import SearchFilterd from '../ui/SearchFilters/SearchFilters'
+import PropertyGrid from '../PropertyGrid/PropertyGrid';
 
 export default function HomeMain() {
-    const [usersEmail, setUsersEmail] = useState(null);
 
 
     return (
         <div className={style.HomeMainContainer}>
-            Hi
+            <SearchFilterd />
+            <PropertyGrid />
         </div>
     );
 }

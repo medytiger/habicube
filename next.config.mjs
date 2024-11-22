@@ -1,10 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: ['lh3.googleusercontent.com'], // Ajoutez ce domaine pour autoriser les images de Google
-    },
+  images: {
+    domains: ["lh3.googleusercontent.com", "images.unsplash.com"], // Combinez les domaines ici
+  },
 };
 
 export default nextConfig;
-
-

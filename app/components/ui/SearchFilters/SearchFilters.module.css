@@ -1,0 +1,106 @@
+/* Conteneur principal */
+.searchFilters {
+  position: sticky;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  z-index: 99;
+  padding: 1rem 0;
+}
+
+/* Conteneur interne */
+.searchFiltersContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Ligne principale avec le champ de recherche */
+.searchFiltersMain {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.searchInputWrapper {
+  flex: 1; /* Prend tout l'espace restant */
+  position: relative;
+}
+
+.searchInputWrapper .searchInput {
+  width: 100%;
+  border: 1px solid var(--couleur-primaire);
+  border-radius: 8px;
+  outline: none;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  display: none;
+}
+
+.searchInputWrapper input {
+  padding: 13px;
+}
+
+.searchInput:focus {
+  border-color: var(--couleur-primaire);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Icône des filtres */
+.filterIcon {
+  width: 70px;
+  height: 47px;
+  font-size: 1.5rem;
+  color: #6b7280;
+  cursor: pointer;
+  background-color: var(--couleur-gris-blanc);
+  padding: 15px;
+  border-radius: var(--border-radius);
+}
+
+/* Bouton de recherche */
+.button {
+  white-space: nowrap; /* Empêche le texte de déborder */
+}
+
+/* Liste des tags */
+.searchFiltersTags {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+/* Conteneur des tags */
+.searchFiltersTags {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+/* Boutons des tags */
+.tagButton {
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: var(--couleur-gris-blanc);
+  border-radius: 9999px;
+  transition: background-color 0.2s, color 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.tagButton:hover {
+  background-color: var(--couleur-gris-smok);
+}
+
+/* Style pour les boutons sélectionnés */
+.tagButton.selected {
+  background-color: var(--couleur-primaire);
+  color: #ffffff;
+}

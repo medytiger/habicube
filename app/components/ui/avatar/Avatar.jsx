@@ -1,7 +1,6 @@
 "use client"
 
 import React from 'react'
-import style from './Avatar.module.css'
 import Image from 'next/image'
 
 export default function Avatar() {

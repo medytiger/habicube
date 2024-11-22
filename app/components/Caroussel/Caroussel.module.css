@@ -1,13 +1,99 @@
-.CarousselContainer {
-  height: 450px;
-  background-color: rgb(197, 197, 197);
-  width: 100vw;
-  margin-top: 50px;
+/* HeroCarousel.css */
+.carousel {
+  position: relative;
+  height: 600px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-items {
+  position: relative;
+  height: 100%;
+}
+
+.carousel-slide {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.7s ease-in-out;
+}
+
+.carousel-slide img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.carousel-content {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-size-extra);
-  font-weight: var(--font-weight-black);
-  -webkit-text-stroke: 1px var(--couleur-blanche);
-  letter-spacing: -3rem;
+  text-align: center;
+  color: white;
+}
+
+.carousel-content h2 {
+  margin-bottom: 16px;
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: -0.02em;
+}
+
+.carousel-content p {
+  margin-bottom: 32px;
+  font-size: 1.25rem;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 8px;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+}
+
+.carousel-button:hover {
+  background: white;
+}
+
+.carousel-button.left {
+  left: 16px;
+}
+
+.carousel-button.right {
+  right: 16px;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.carousel-indicator {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transition: all 0.2s;
+}
+
+.carousel-indicator.active {
+  width: 32px;
+  background: white;
 }

@@ -1,5 +1,6 @@
 :root {
   --button-border-radius: 0.4rem;
+  --border-radius: 0.4rem;
 
   /* Variables pour les titres */
   --font-size-extra: 200px;
